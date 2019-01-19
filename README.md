@@ -1,6 +1,6 @@
 # Python Autonomous Car with Tensorflow
 
-Using Python to play Udacity's open source Self-Driving Car Simulator with an autonomous agent built with deep learning techniques.
+Explores the capabilities of Python to play Udacity's open source Self-Driving Car Simulator with an autonomous agent built with deep learning techniques.
 
 This program does not use Udacity's built in frame recording function. Rather, it reads frames in directly from the desktop using OpenCV.
 
