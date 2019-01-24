@@ -4,9 +4,9 @@ import cv2
 from mss import mss
 from PIL import Image
 from direct_keys import PressKey, ReleaseKey, W, A, S, D, KeyDown, KeyUp
-from lines import draw_lanes, output_lines_to_screen
-from img_processing import *
+from img_processing import process_img
 from get_keys import key_check, listen_keys
+import os
 
 # COUNTDOWN:
 # for i in list(range(4))[::-1]:
@@ -37,39 +37,49 @@ kernel_size = 5
 min_length = 20
 max_gap = 15
 
-def process_img(original_image):
-	# processed_img = filter_colors(original_image, white_threshold, gray_threshold)
-	# processed_img = get_gray(original_image)
-	processed_img = get_edges(original_image, low_threshold, high_threshold)
-	processed_img = roi(processed_img, roi_vertices)
-	# processed_img = subtract_bottom(processed_img)
-	processed_img = blur_screen(processed_img, kernel_size)
+# def process_img(original_image):
+# 	# processed_img = filter_colors(original_image, white_threshold, gray_threshold)
+# 	# processed_img = get_gray(original_image)
+# 	processed_img = get_edges(original_image, low_threshold, high_threshold)
+# 	processed_img = roi(processed_img, roi_vertices)
+# 	# processed_img = subtract_bottom(processed_img)
+# 	processed_img = blur_screen(processed_img, kernel_size)
 
-	lines = get_lines(processed_img, min_length, max_gap)
-	output_lines_to_screen(processed_img, lines)
+# 	lines = get_lines(processed_img, min_length, max_gap)
+# 	output_lines_to_screen(processed_img, lines)
 	
-	processed_img = draw_car_poly(processed_img, car_poly_vertices)
-	return processed_img
+# 	processed_img = draw_car_poly(processed_img, car_poly_vertices)
+# 	return processed_img
 
-# sct = mss()
-# last_time = time.time()
-# while 1:
+sct = mss()
+last_time = time.time()
+while 1:
 
-# 	screen = np.array(sct.grab(bbox))
-# 	new_screen = process_img(screen)
+	screen = np.array(sct.grab(bbox))
+	new_screen = process_img(screen)
 
-# 	print('Loop took {0:.4f} seconds with {1:.4f} fps'.format(time.time() - last_time, (time.time() - last_time)**-1))
-# 	last_time = time.time()
+	print('Loop took {0:.4f} seconds with {1:.4f} fps'.format(time.time() - last_time, (time.time() - last_time)**-1))
+	last_time = time.time()
 
-# 	cv2.imshow('filtered_screen',  new_screen)
+	cv2.imshow('filtered_screen',  new_screen)
 
-# 	if cv2.waitKey(1) & 0xFF == ord('q'):
-# 		cv2.destroyAllWindows()
-# 		break
+	if cv2.waitKey(1) & 0xFF == ord('q'):
+		cv2.destroyAllWindows()
+		break
 
-def main():
-	listen_keys()
-	keys = key_check()
-	print(keys)
+# def keys_output(keys):
+# 	output = [0, 0, 0]
+# 	if 'A' in keys:
+# 		output[0] = 1
+# 	elif 'D' in keys:
+# 		output[2] = 1
+# 	elif 'A' in keys:
+# 		output[1] = 1
+# 	return output
 
-main()
+# def main():
+# 	listen_keys()
+# 	keys = key_check()
+# 	print(keys)
+
+# main()

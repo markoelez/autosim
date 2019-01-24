@@ -5,7 +5,8 @@ from numpy.linalg import lstsq
 from statistics import mean
 
 
-def output_lines_to_screen(screen, lines):
+
+def output_lanes_to_screen(screen, lines):
 	try:
 		for coords in lines:
 			coords = coords[0]
