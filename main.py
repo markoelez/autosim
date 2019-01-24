@@ -4,9 +4,9 @@ import cv2
 from mss import mss
 from PIL import Image
 from direct_keys import PressKey, ReleaseKey, W, A, S, D, KeyDown, KeyUp
-from lines import draw_lanes, draw_lines, output_lines_to_screen
+from lines import draw_lanes, output_lines_to_screen
 from img_processing import *
-# from get_keys import key_check
+from get_keys import key_check, listen_keys
 
 # COUNTDOWN:
 # for i in list(range(4))[::-1]:
@@ -51,20 +51,25 @@ def process_img(original_image):
 	processed_img = draw_car_poly(processed_img, car_poly_vertices)
 	return processed_img
 
+# sct = mss()
+# last_time = time.time()
+# while 1:
 
+# 	screen = np.array(sct.grab(bbox))
+# 	new_screen = process_img(screen)
 
-sct = mss()
-last_time = time.time()
-while 1:
+# 	print('Loop took {0:.4f} seconds with {1:.4f} fps'.format(time.time() - last_time, (time.time() - last_time)**-1))
+# 	last_time = time.time()
 
-	screen = np.array(sct.grab(bbox))
-	new_screen = process_img(screen)
+# 	cv2.imshow('filtered_screen',  new_screen)
 
-	print('Loop took {0:.4f} seconds with {1:.4f} fps'.format(time.time() - last_time, (time.time() - last_time)**-1))
-	last_time = time.time()
+# 	if cv2.waitKey(1) & 0xFF == ord('q'):
+# 		cv2.destroyAllWindows()
+# 		break
 
-	cv2.imshow('filtered_screen',  new_screen)
+def main():
+	listen_keys()
+	keys = key_check()
+	print(keys)
 
-	if cv2.waitKey(1) & 0xFF == ord('q'):
-		cv2.destroyAllWindows()
-		break
+main()
