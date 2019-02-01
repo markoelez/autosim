@@ -1,0 +1,5 @@
+training_data.npy
+balanced_data.npy
+.pylintrc
+py-auto-sim-1e-06-CNN-20-epochs.model
+pyAutoSim-1e-05-Alexnet-50-epochs.model

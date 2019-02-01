@@ -2,7 +2,8 @@ import cv2
 from lanes import draw_lanes, output_lanes_to_screen
 from img_functions import *
 
-
+# frame to input scale factor
+scale_factor = 20
 # window frame
 bbox = {'top': 150, 'left': 100, 'width': 400, 'height': 150}
 # car frame
