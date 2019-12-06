@@ -10,7 +10,7 @@ In order setup the program correctly, the Udacity simulator should be set to a s
 
 # Usage:
 
-1. generate training data by running `generate_data.py'
+1. generate training data by running `generate_data.py`
 2. balance trainging data by running `balance_data.py`
 3. train model by running `train_model.py`
 4. run `test_model.py` to test your model in the virtual environment
